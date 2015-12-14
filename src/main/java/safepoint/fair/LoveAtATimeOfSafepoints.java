@@ -55,6 +55,14 @@ public abstract class LoveAtATimeOfSafepoints {
 
   @Benchmark
   @Group("run_together")
+  public boolean contains1() {
+    int needle = 1;
+    byte[] haystack = soggyBottoms;
+    return containsNeedle1(needle, haystack);
+  }
+
+  @Benchmark
+  @Group("run_together")
   public boolean contains1ToK() {
     byte[] haystack = soggyBottoms;
     for (int needle = 1; needle <= k; needle++) {
@@ -63,14 +71,6 @@ public abstract class LoveAtATimeOfSafepoints {
       }
     }
     return false;
-  }
-
-  @Benchmark
-  @Group("run_together")
-  public boolean contains1() {
-    int needle = 1;
-    byte[] haystack = soggyBottoms;
-    return containsNeedle1(needle, haystack);
   }
 
   private static boolean containsNeedle1(int needle, byte[] haystack) {
