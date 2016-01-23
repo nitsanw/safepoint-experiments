@@ -1,0 +1,234 @@
+Classfile /home/yak/git/safepoint-experiments/WhenWillItExitInt-bytecode-comparison/WhenWillItExitInt.javac.class
+  Last modified 23 Jan 2016; size 1800 bytes
+  MD5 checksum e0a53c3191f8e556fa322a4bd09306c4
+  Compiled from "WhenWillItExitInt.java"
+public class safepoint.hang.WhenWillItExitInt
+  minor version: 0
+  major version: 52
+  flags: ACC_PUBLIC, ACC_SUPER
+Constant pool:
+    #1 = Methodref          #21.#46       // java/lang/Object."<init>":()V
+    #2 = Class              #47           // java/lang/Thread
+    #3 = InvokeDynamic      #0:#52        // #0:run:()Ljava/lang/Runnable;
+    #4 = Methodref          #2.#53        // java/lang/Thread."<init>":(Ljava/lang/Runnable;)V
+    #5 = Methodref          #2.#54        // java/lang/Thread.setDaemon:(Z)V
+    #6 = Methodref          #2.#55        // java/lang/Thread.start:()V
+    #7 = Long               5000l
+    #9 = Methodref          #2.#56        // java/lang/Thread.sleep:(J)V
+   #10 = Class              #57           // java/lang/Integer
+   #11 = Integer            2147483647
+   #12 = Fieldref           #58.#59       // java/lang/System.out:Ljava/io/PrintStream;
+   #13 = Class              #60           // java/lang/StringBuilder
+   #14 = Methodref          #13.#46       // java/lang/StringBuilder."<init>":()V
+   #15 = String             #61           // How Odd:
+   #16 = Methodref          #13.#62       // java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+   #17 = Methodref          #13.#63       // java/lang/StringBuilder.append:(J)Ljava/lang/StringBuilder;
+   #18 = Methodref          #13.#64       // java/lang/StringBuilder.toString:()Ljava/lang/String;
+   #19 = Methodref          #65.#66       // java/io/PrintStream.println:(Ljava/lang/String;)V
+   #20 = Class              #67           // safepoint/hang/WhenWillItExitInt
+   #21 = Class              #68           // java/lang/Object
+   #22 = Utf8               <init>
+   #23 = Utf8               ()V
+   #24 = Utf8               Code
+   #25 = Utf8               LineNumberTable
+   #26 = Utf8               LocalVariableTable
+   #27 = Utf8               this
+   #28 = Utf8               Lsafepoint/hang/WhenWillItExitInt;
+   #29 = Utf8               main
+   #30 = Utf8               ([Ljava/lang/String;)V
+   #31 = Utf8               argc
+   #32 = Utf8               [Ljava/lang/String;
+   #33 = Utf8               t
+   #34 = Utf8               Ljava/lang/Thread;
+   #35 = Utf8               Exceptions
+   #36 = Class              #69           // java/lang/InterruptedException
+   #37 = Utf8               lambda$main$4
+   #38 = Utf8               j
+   #39 = Utf8               I
+   #40 = Utf8               i
+   #41 = Utf8               l
+   #42 = Utf8               J
+   #43 = Utf8               StackMapTable
+   #44 = Utf8               SourceFile
+   #45 = Utf8               WhenWillItExitInt.java
+   #46 = NameAndType        #22:#23       // "<init>":()V
+   #47 = Utf8               java/lang/Thread
+   #48 = Utf8               BootstrapMethods
+   #49 = MethodHandle       #6:#70        // invokestatic java/lang/invoke/LambdaMetafactory.metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+   #50 = MethodType         #23           //  ()V
+   #51 = MethodHandle       #6:#71        // invokestatic safepoint/hang/WhenWillItExitInt.lambda$main$4:()V
+   #52 = NameAndType        #72:#73       // run:()Ljava/lang/Runnable;
+   #53 = NameAndType        #22:#74       // "<init>":(Ljava/lang/Runnable;)V
+   #54 = NameAndType        #75:#76       // setDaemon:(Z)V
+   #55 = NameAndType        #77:#23       // start:()V
+   #56 = NameAndType        #78:#79       // sleep:(J)V
+   #57 = Utf8               java/lang/Integer
+   #58 = Class              #80           // java/lang/System
+   #59 = NameAndType        #81:#82       // out:Ljava/io/PrintStream;
+   #60 = Utf8               java/lang/StringBuilder
+   #61 = Utf8               How Odd:
+   #62 = NameAndType        #83:#84       // append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+   #63 = NameAndType        #83:#85       // append:(J)Ljava/lang/StringBuilder;
+   #64 = NameAndType        #86:#87       // toString:()Ljava/lang/String;
+   #65 = Class              #88           // java/io/PrintStream
+   #66 = NameAndType        #89:#90       // println:(Ljava/lang/String;)V
+   #67 = Utf8               safepoint/hang/WhenWillItExitInt
+   #68 = Utf8               java/lang/Object
+   #69 = Utf8               java/lang/InterruptedException
+   #70 = Methodref          #91.#92       // java/lang/invoke/LambdaMetafactory.metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+   #71 = Methodref          #20.#93       // safepoint/hang/WhenWillItExitInt.lambda$main$4:()V
+   #72 = Utf8               run
+   #73 = Utf8               ()Ljava/lang/Runnable;
+   #74 = Utf8               (Ljava/lang/Runnable;)V
+   #75 = Utf8               setDaemon
+   #76 = Utf8               (Z)V
+   #77 = Utf8               start
+   #78 = Utf8               sleep
+   #79 = Utf8               (J)V
+   #80 = Utf8               java/lang/System
+   #81 = Utf8               out
+   #82 = Utf8               Ljava/io/PrintStream;
+   #83 = Utf8               append
+   #84 = Utf8               (Ljava/lang/String;)Ljava/lang/StringBuilder;
+   #85 = Utf8               (J)Ljava/lang/StringBuilder;
+   #86 = Utf8               toString
+   #87 = Utf8               ()Ljava/lang/String;
+   #88 = Utf8               java/io/PrintStream
+   #89 = Utf8               println
+   #90 = Utf8               (Ljava/lang/String;)V
+   #91 = Class              #94           // java/lang/invoke/LambdaMetafactory
+   #92 = NameAndType        #95:#99       // metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+   #93 = NameAndType        #37:#23       // lambda$main$4:()V
+   #94 = Utf8               java/lang/invoke/LambdaMetafactory
+   #95 = Utf8               metafactory
+   #96 = Class              #101          // java/lang/invoke/MethodHandles$Lookup
+   #97 = Utf8               Lookup
+   #98 = Utf8               InnerClasses
+   #99 = Utf8               (Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+  #100 = Class              #102          // java/lang/invoke/MethodHandles
+  #101 = Utf8               java/lang/invoke/MethodHandles$Lookup
+  #102 = Utf8               java/lang/invoke/MethodHandles
+{
+  public safepoint.hang.WhenWillItExitInt();
+    descriptor: ()V
+    flags: ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+      LineNumberTable:
+        line 2: 0
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0       5     0  this   Lsafepoint/hang/WhenWillItExitInt;
+
+  public static void main(java.lang.String[]) throws java.lang.InterruptedException;
+    descriptor: ([Ljava/lang/String;)V
+    flags: ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=3, locals=2, args_size=1
+         0: new           #2                  // class java/lang/Thread
+         3: dup
+         4: invokedynamic #3,  0              // InvokeDynamic #0:run:()Ljava/lang/Runnable;
+         9: invokespecial #4                  // Method java/lang/Thread."<init>":(Ljava/lang/Runnable;)V
+        12: astore_1
+        13: aload_1
+        14: iconst_1
+        15: invokevirtual #5                  // Method java/lang/Thread.setDaemon:(Z)V
+        18: aload_1
+        19: invokevirtual #6                  // Method java/lang/Thread.start:()V
+        22: ldc2_w        #7                  // long 5000l
+        25: invokestatic  #9                  // Method java/lang/Thread.sleep:(J)V
+        28: return
+      LineNumberTable:
+        line 4: 0
+        line 14: 13
+        line 15: 18
+        line 16: 22
+        line 17: 28
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+            0      29     0  argc   [Ljava/lang/String;
+           13      16     1     t   Ljava/lang/Thread;
+    Exceptions:
+      throws java.lang.InterruptedException
+
+  private static void lambda$main$4();
+    descriptor: ()V
+    flags: ACC_PRIVATE, ACC_STATIC, ACC_SYNTHETIC
+    Code:
+      stack=4, locals=4, args_size=0
+         0: lconst_0
+         1: lstore_0
+         2: iconst_0
+         3: istore_2
+         4: iload_2
+         5: ldc           #11                 // int 2147483647
+         7: if_icmpge     41
+        10: iconst_0
+        11: istore_3
+        12: iload_3
+        13: ldc           #11                 // int 2147483647
+        15: if_icmpge     35
+        18: iload_3
+        19: iconst_1
+        20: iand
+        21: iconst_1
+        22: if_icmpne     29
+        25: lload_0
+        26: lconst_1
+        27: ladd
+        28: lstore_0
+        29: iinc          3, 1
+        32: goto          12
+        35: iinc          2, 1
+        38: goto          4
+        41: getstatic     #12                 // Field java/lang/System.out:Ljava/io/PrintStream;
+        44: new           #13                 // class java/lang/StringBuilder
+        47: dup
+        48: invokespecial #14                 // Method java/lang/StringBuilder."<init>":()V
+        51: ldc           #15                 // String How Odd:
+        53: invokevirtual #16                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        56: lload_0
+        57: invokevirtual #17                 // Method java/lang/StringBuilder.append:(J)Ljava/lang/StringBuilder;
+        60: invokevirtual #18                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        63: invokevirtual #19                 // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+        66: return
+      LineNumberTable:
+        line 5: 0
+        line 6: 2
+        line 7: 10
+        line 8: 18
+        line 9: 25
+        line 7: 29
+        line 6: 35
+        line 12: 41
+        line 13: 66
+      LocalVariableTable:
+        Start  Length  Slot  Name   Signature
+           12      23     3     j   I
+            4      37     2     i   I
+            2      65     0     l   J
+      StackMapTable: number_of_entries = 5
+        frame_type = 253 /* append */
+          offset_delta = 4
+          locals = [ long, int ]
+        frame_type = 252 /* append */
+          offset_delta = 7
+          locals = [ int ]
+        frame_type = 16 /* same */
+        frame_type = 250 /* chop */
+          offset_delta = 5
+        frame_type = 250 /* chop */
+          offset_delta = 5
+}
+SourceFile: "WhenWillItExitInt.java"
+InnerClasses:
+     public static final #97= #96 of #100; //Lookup=class java/lang/invoke/MethodHandles$Lookup of class java/lang/invoke/MethodHandles
+BootstrapMethods:
+  0: #49 invokestatic java/lang/invoke/LambdaMetafactory.metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+    Method arguments:
+      #50 ()V
+      #51 invokestatic safepoint/hang/WhenWillItExitInt.lambda$main$4:()V
+      #50 ()V
