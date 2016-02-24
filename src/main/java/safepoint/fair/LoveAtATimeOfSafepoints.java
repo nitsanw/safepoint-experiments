@@ -17,96 +17,104 @@ import org.openjdk.jmh.annotations.State;
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
 @State(Scope.Thread)
 public abstract class LoveAtATimeOfSafepoints {
-  @Param("32768")
-  int size;
-  @Param("10")
-  int k;
-  @Param("100")
-  int intervalMs;
+    @Param("32768")
+    int size;
+    @Param("10")
+    int k;
+    @Param("100")
+    int intervalMs;
 
-  @Param({ "0" })
-  int idleThreads;
-  Thread[] pool;
+    @Param({ "0" })
+    int idleThreads;
+    Thread[] pool;
 
-  byte[] soggyBottoms;
+    byte[] soggyBottoms;
 
-  @Setup
-  public final void bakeACake() {
-    soggyBottoms = new byte[size];
-    if (idleThreads != 0) {
-      pool = new Thread[idleThreads];
-      for (int i = 0; i < idleThreads; i++) {
-        pool[i] = new Thread(() -> {
-          parkDeep(256);
-        });
-        pool[i].setDaemon(true);
-        pool[i].start();
-      }
+    @Setup
+    public final void bakeACake() {
+        soggyBottoms = new byte[size];
+        if (idleThreads != 0) {
+            pool = new Thread[idleThreads];
+            for (int i = 0; i < idleThreads; i++) {
+                pool[i] = new Thread(new Runnable() {
+
+                    @Override
+                    public void run() {
+
+                        parkDeep(256);
+                    }
+                });
+                pool[i].setDaemon(true);
+                pool[i].start();
+            }
+        }
     }
-  }
 
-  static void parkDeep(int i) {
-    if (i == 0) {
-      LockSupport.park();
-    } else {
-      parkDeep(i - 1);
+    static void parkDeep(int i) {
+        if (i == 0) {
+            LockSupport.park();
+        }
+        else {
+            parkDeep(i - 1);
+        }
     }
-  }
 
-  @Benchmark
-  @Group("run_together")
-  public boolean contains1() {
-    int needle = 1;
-    byte[] haystack = soggyBottoms;
-    return containsNeedle1(needle, haystack);
-  }
-
-  @Benchmark
-  @Group("run_together")
-  public boolean contains1ToK() {
-    byte[] haystack = soggyBottoms;
-    for (int needle = 1; needle <= k; needle++) {
-      if (containsNeedle2(needle, haystack)) {
-        return true;
-      }
+    @Benchmark
+    @Group("run_together")
+    public boolean contains1() {
+        int needle = 1;
+        byte[] haystack = soggyBottoms;
+        return containsNeedle1(needle, haystack);
     }
-    return false;
-  }
 
-  private static boolean containsNeedle1(int needle, byte[] haystack) {
-    for (int i = 0; i < haystack.length - 3; i++) {
-      if (((haystack[i] << 24) | (haystack[i + 1] << 16) | (haystack[i + 2] << 8) | haystack[i + 3]) == needle) {
-        return true;
-      }
+    @Benchmark
+    @Group("run_together")
+    public boolean contains1ToK() {
+        byte[] haystack = soggyBottoms;
+        for (int needle = 1; needle <= k; needle++) {
+            if (containsNeedle2(needle, haystack)) {
+                return true;
+            }
+        }
+        return false;
     }
-    return false;
-  }
 
-  private static boolean containsNeedle2(int needle, byte[] haystack) {
-    for (int i = 0; i < haystack.length - 3; i++) {
-      if (((haystack[i] << 24) | (haystack[i + 1] << 16) | (haystack[i + 2] << 8) | haystack[i + 3]) == needle) {
-        return true;
-      }
+    private static boolean containsNeedle1(int needle, byte[] haystack) {
+        for (int i = 0; i < haystack.length - 3; i++) {
+            if (((haystack[i] << 24) | (haystack[i + 1] << 16) | (haystack[i + 2] << 8)
+                    | haystack[i + 3]) == needle) {
+                return true;
+            }
+        }
+        return false;
     }
-    return false;
-  }
 
-  @Benchmark
-  @Group("run_together")
-  public Object safepoint() {
-    if (intervalMs == 0)
-      return null;
-    LockSupport.parkNanos(intervalMs * 1_000_000);
-    return safepointMethod();
-  }
+    private static boolean containsNeedle2(int needle, byte[] haystack) {
+        for (int i = 0; i < haystack.length - 3; i++) {
+            if (((haystack[i] << 24) | (haystack[i + 1] << 16) | (haystack[i + 2] << 8)
+                    | haystack[i + 3]) == needle) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-  protected abstract Object safepointMethod();
+    @Benchmark
+    @Group("run_together")
+    public Object safepoint() {
+        if (intervalMs == 0)
+            return null;
+        LockSupport.parkNanos(intervalMs * 1000000);
+        return safepointMethod();
+    }
 
-  @Benchmark
-  @Group("run_together")
-  public void park() {
-    if (intervalMs == 0)
-      return;
-    LockSupport.parkNanos(intervalMs * 1_000_000);
-  }
+    protected abstract Object safepointMethod();
+
+    @Benchmark
+    @Group("run_together")
+    public void park() {
+        if (intervalMs == 0)
+            return;
+        LockSupport.parkNanos(intervalMs * 1000000);
+    }
 }
